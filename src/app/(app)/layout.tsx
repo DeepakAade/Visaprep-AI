@@ -64,7 +64,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <SidebarHeader>
           <div className="flex items-center gap-2">
             <Icons.logo className="size-8 text-sidebar-primary" />
-            <span className="text-xl font-semibold font-headline text-sidebar-foreground">VisaPrep AI</span>
+            <span className="text-xl font-semibold font-headline text-sidebar-foreground">VisaPrep</span>
           </div>
         </SidebarHeader>
         <SidebarContent>
@@ -118,7 +118,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
             </Avatar>
             <div className="flex flex-col overflow-hidden">
                 <span className="font-semibold truncate">Demo User</span>
-                <span className="text-xs text-sidebar-foreground/70 truncate">demo@visaprep.ai</span>
+                <span className="text-xs text-sidebar-foreground/70 truncate">demo@visaprep.com</span>
             </div>
             <Settings className="ml-auto size-5 shrink-0" />
           </div>

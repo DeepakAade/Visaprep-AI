@@ -24,14 +24,14 @@ export default function LoginPage() {
           <div className="mx-auto mb-4">
             <Icons.logo className="h-12 w-12 text-primary" />
           </div>
-          <CardTitle className="font-headline text-3xl">Welcome to VisaPrep AI</CardTitle>
+          <CardTitle className="font-headline text-3xl">Welcome to VisaPrep</CardTitle>
           <CardDescription>Sign in to access your dashboard</CardDescription>
         </CardHeader>
         <form onSubmit={handleLogin}>
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="m@example.com" required defaultValue="demo@visaprep.ai" />
+              <Input id="email" type="email" placeholder="m@example.com" required defaultValue="demo@visaprep.com" />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
