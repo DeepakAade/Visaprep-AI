@@ -3,7 +3,9 @@
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Check, Circle, FileText, Landmark, Calendar, Mail } from "lucide-react";
+import { Check, FileText, Landmark, Calendar as CalendarIcon, Mail } from "lucide-react";
+import { Calendar } from '@/components/ui/calendar';
+import Link from 'next/link';
 
 const steps = [
   {
@@ -20,9 +22,9 @@ const steps = [
   },
   {
     name: "Interview Scheduled",
-    description: "Schedule your visa interview and biometrics appointments.",
+    description: "Your interview is set. See details below.",
     status: "current",
-    icon: Calendar
+    icon: CalendarIcon
   },
   {
     name: "Interview Attended",
@@ -39,7 +41,7 @@ const steps = [
 ];
 
 export default function ApplyPage() {
-    const [currentStep, setCurrentStep] = useState(2); // 0-indexed, so 2 is "Interview Scheduled"
+    const [date, setDate] = useState<Date | undefined>(new Date());
 
     const getStatusClasses = (stepStatus: string, isLastStep: boolean) => {
         const baseLine = "after:absolute after:top-1/2 after:transform after:-translate-y-1/2 after:w-full after:h-0.5";
@@ -86,14 +88,37 @@ export default function ApplyPage() {
                         ))}
                     </ol>
                 </div>
-                 <div className="mt-12 text-center">
-                    <p className="text-lg font-semibold">Next Step: Attend Your Interview</p>
-                    <p className="text-muted-foreground mt-1">
-                        Your interview is scheduled. Make sure you have all your documents ready.
-                    </p>
-                    <div className="mt-6 flex justify-center gap-4">
-                        <Button>View Document Checklist</Button>
-                        <Button variant="outline">Practice Interview Questions</Button>
+                 <div className="mt-12 flex flex-col items-center gap-8">
+                    <div className="flex flex-col items-center text-center">
+                        <p className="text-lg font-semibold">Your Interview is Scheduled!</p>
+                        <p className="text-muted-foreground mt-1 max-w-md">
+                            Your appointment is confirmed. The calendar below highlights the date. Make sure you have all your documents ready.
+                        </p>
+                    </div>
+
+                    <div className="rounded-md border">
+                        <Calendar
+                            mode="single"
+                            selected={date}
+                            onSelect={setDate}
+                            className="p-0"
+                            classNames={{
+                                month: "space-y-4 p-4",
+                                head_cell: "w-10",
+                                cell: "h-10 w-10 text-center",
+                                day_selected:
+                                "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground"
+                            }}
+                        />
+                    </div>
+                    
+                    <div className="flex justify-center gap-4">
+                        <Button asChild>
+                            <Link href="/documents">View Document Checklist</Link>
+                        </Button>
+                        <Button variant="outline" asChild>
+                           <Link href="/practice">Practice Interview Questions</Link>
+                        </Button>
                     </div>
                 </div>
             </CardContent>
